@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+import uuid
 
 class Project(models.Model):
     def __str__(self):
@@ -13,6 +14,7 @@ class Person(models.Model):
         self.current_snippet.stop_time = datetime.datetime.now()
         self.current_snippet = Null
     name = models.CharField(blank=True, max_length=100)
+    private_id = models.UUIDField(default=uuid.uuid4)
     current_snippet = models.ForeignKey('Time', null=True)
 
 class Time(models.Model):

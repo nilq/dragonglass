@@ -6,13 +6,11 @@
     <link rel="stylesheet" href="/css/lumen.min.css" charset="utf-8">
   </head>
   <body>
-    {% for each in Person.all %}
-      <a>Person: {{ each.name }}</a>
-      {% if each.current_snippet %}
-      <ul><li>Current Project: {{ each.current_snippet.project.name }}</li></ul>
-      {% endif %}
-      <p>
-    {% endfor %}
+    <a>Person: {{ Person.name }}</a>
+    {% if Person.current_snippet %}
+    <ul><li>Current Project: {{ Person.current_snippet.project.name }}</li></ul>
+    {% endif %}
+    <p>
     <p>
     <a>Time Snippets:</a>
     {% for each in Time.all %}
