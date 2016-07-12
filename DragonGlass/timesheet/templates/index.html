@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dragon Glass</title>
+    <link rel="stylesheet" href="/css/lumen.min.css" charset="utf-8">
+  </head>
+  <body>
+    {% for each in Person.all %}
+      <a>Person: {{ each.name }}</a>
+      {% if each.current_snippet %}
+      <ul><li>Current Project: {{ each.current_snippet.project.name }}</li></ul>
+      {% endif %}
+      <p>
+    {% endfor %}
+    <p>
+    <a>Time Snippets:</a>
+    {% for each in Time.all %}
+      <ul>
+        <li>{{ each.start_time }}</li>
+        <li>{% if each.stop_time %}{{ each.stop_time }}{% else %}Still working{% endif %}</li>
+        <li>{{ each.person_safe.name }}</li>
+        <li>{{ each.project.name }}</li>
+      </ul>
+      <p>
+    {% endfor %}
+    <form action="/" method="post">
+      {% csrf_token %}
+    <input type="submit" value="Start" />
+    </form>
+  </body>
+</html>
