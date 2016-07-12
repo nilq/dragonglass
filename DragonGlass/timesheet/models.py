@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 class Project(models.Model):
     def __str__(self):
@@ -8,6 +9,9 @@ class Project(models.Model):
 class Person(models.Model):
     def __str__(self):
         return self.name
+    def end_snippet(self):
+        self.current_snippet.stop_time = datetime.datetime.now()
+        self.current_snippet = Null
     name = models.CharField(blank=True, max_length=100)
     current_snippet = models.ForeignKey('Time', null=True)
 
