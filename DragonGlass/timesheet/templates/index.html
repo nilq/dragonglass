@@ -14,7 +14,7 @@
 
     <h1 class="page-header center">{{ Person.name }}</h1>
 
-    {%for project in Project.all%}
+    {%for project in Project%}
       <div class="panel panel-default">
         <div class="panel-heading center">
           <h4>{{ project.name }}</h4>
@@ -23,10 +23,17 @@
           {%if Person.current_snippet.project.name == project.name%}
             <form class="" method="post">
               <input type="submit" class="btn btn-danger btn-lg btn-block" value="Stop">
+              <input type="hidden" name="dostuff" value="stop">
+              <input type="hidden" name="project" value="{{project.id}}">
                {% csrf_token %}
             </form>
           {%else%}
-            <a href="#" class="btn btn-success btn-lg btn-block">Start</a>
+          <form class="" method="post">
+            <input type="submit" class="btn btn-success btn-lg btn-block" value="Start">
+            <input type="hidden" name="dostuff" value="start">
+            <input type="hidden" name="project" value="{{project.id}}">
+             {% csrf_token %}
+          </form>
           {%endif%}
         </div>
       </div>
