@@ -21,8 +21,7 @@ class Person(models.Model):
         self.current_snippet.stop_time = datetime.now()
         self.current_snippet = None
     def start_snippet(self, project):
-        temp = Time.objects.create(start_time=datetime.now, person_safe=self, project=project)
-        self.current_snippet = temp
+        self.current_snippet = Time.objects.create(start_time=datetime.now(), person_safe=self, project=project)
 
     name = models.CharField(blank=True, max_length=100)
     private_id = models.UUIDField(default=uuid.uuid4)

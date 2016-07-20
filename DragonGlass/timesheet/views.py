@@ -11,6 +11,6 @@ def index(request, private_id):
             person.end_snippet()
         else:
             project_id = request.POST["project"]
-            person.start_snippet(Project.objects.get(id = project_id))
+            person.start_snippet(Project.objects.all().get(id = project_id))
 
     return render(request, 'index.html', {'Person':person, 'Time':Time.objects, 'Project':Project.objects.all()})
