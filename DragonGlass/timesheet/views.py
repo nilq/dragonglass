@@ -1,5 +1,5 @@
 from django.http import HttpResponse #delete??
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Project, Person, Time
 
 def index(request, private_id):
@@ -12,5 +12,6 @@ def index(request, private_id):
         else:
             project_id = request.POST["project"]
             person.start_snippet(Project.objects.all().get(id = project_id))
+        return redirect(request.get_full_path())
 
     return render(request, 'index.html', {'Person':person, 'Time':Time.objects, 'Project':Project.objects.all()})
