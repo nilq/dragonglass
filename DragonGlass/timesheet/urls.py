@@ -4,4 +4,5 @@ from . import views
 
 urlpatterns = [
     url(r'([\d\w]{32})', views.index, name='index'),
+    url(r'cal', views.calendar, name='calendar'),
 ]
